@@ -23,36 +23,41 @@ namespace DirectShowHObjectToHImage
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class Form1
     {
+        #region Private Fields
+
         /// <summary>
         /// The Halcon image as HObject
         /// </summary>
         private HObject ho_Image = new HObject();
 
         /// <summary>
-        /// The Halcon acquisition handle
+        ///
         /// </summary>
         private HTuple hv_AcqHandle;
 
+        #endregion Private Fields
+
+        #region Private Enums
+
         /// <summary>
-        /// Enum imageType
+        /// Enumeration of image types
         /// </summary>
         private enum imageType
         {
             /// <summary>
-            /// The mono image
+            /// A monochrome image
             /// </summary>
             monoImage = 1,
+
             /// <summary>
-            /// Enum imageType
-            /// </summary>
-            /// <summary>
-            /// The RGB image
-            /// <summary>
-            /// The mono image
-            /// </summary>
+            /// An RGB image
             /// </summary>
             rgbImage = 3
         }
+
+        #endregion Private Enums
+
+        #region Public Properties
 
         /// <summary>
         /// Enum imageType
@@ -88,6 +93,8 @@ namespace DirectShowHObjectToHImage
             }
         }
 
+        #endregion Public Properties
+
 #if !(NO_EXPORT_MAIN || NO_EXPORT_APP_MAIN)
         public HDevelopExport()
         {
@@ -102,6 +109,8 @@ namespace DirectShowHObjectToHImage
 
 #if !NO_EXPORT_MAIN
 
+        #region Private Methods
+
         /// <summary>
         /// Shuts down halcon.
         /// </summary>
@@ -111,6 +120,39 @@ namespace DirectShowHObjectToHImage
         {
             HOperatorSet.CloseFramegrabber(hv_AcqHandle);
             ho_Image.Dispose();
+        }
+
+        /// <summary>
+        /// Actions this instance.
+        /// </summary>
+        private void action()
+        {
+            // Local iconic variables
+            ho_Image = null;
+
+            // Local control variables
+            Hv_AcqHandle = null;
+
+            // Initialize local and output iconic variables
+            HOperatorSet.GenEmptyObj(out ho_Image);
+            InitializeFramegrabber();
+            while ((int)(1) != 0)
+            {
+                GrabImage();
+
+                //Image Acquisition 01: Do something
+            }
+
+            ShutDownHalcon(HalconImage, Hv_AcqHandle);
+        }
+
+        // Main procedure
+        /// <summary>
+        /// Grabs the image.
+        /// </summary>
+        private void GrabImage()
+        {
+            HOperatorSet.GrabImageAsync(out ho_Image, Hv_AcqHandle, -1);
         }
 
         /// <summary>
@@ -169,40 +211,6 @@ namespace DirectShowHObjectToHImage
             return resultHImage;
         }
 
-        // Main procedure
-
-        /// <summary>
-        /// Actions this instance.
-        /// </summary>
-        private void action()
-        {
-            // Local iconic variables
-            ho_Image = null;
-
-            // Local control variables
-            hv_AcqHandle = null;
-
-            // Initialize local and output iconic variables
-            HOperatorSet.GenEmptyObj(out ho_Image);
-            InitializeFramegrabber();
-            while ((int)(1) != 0)
-            {
-                GrabImage();
-
-                //Image Acquisition 01: Do something
-            }
-
-            ShutDownHalcon(HalconImage, hv_AcqHandle);
-        }
-
-        /// <summary>
-        /// Grabs the image.
-        /// </summary>
-        private void GrabImage()
-        {
-            HOperatorSet.GrabImageAsync(out ho_Image, hv_AcqHandle, -1);
-        }
-
         /// <summary>
         /// Initializes the framegrabber.
         /// </summary>
@@ -214,6 +222,8 @@ namespace DirectShowHObjectToHImage
             HOperatorSet.GrabImageStart(hv_AcqHandle, -1);
         }
 
+        #endregion Private Methods
+
 #endif
     }
 
@@ -224,6 +234,7 @@ namespace DirectShowHObjectToHImage
         /// The mono image
         /// </summary>
         static void Main(string[] args)
+
         /// <summary>
         /// The RGB image
         /// </summary>
