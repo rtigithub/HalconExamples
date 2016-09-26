@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HalconExtensionLibrary", "H
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Halcon_Connected", "HalconConnected\HalconConnected\Halcon_Connected.csproj", "{E68C36B6-BFA2-4EC2-B132-75509C43FB24}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "H12Python", "H12Python\H12Python\H12Python.pyproj", "{4C2C08D8-15FE-4AF7-A72B-AE8F33407DC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,8 @@ Global
 		{E68C36B6-BFA2-4EC2-B132-75509C43FB24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E68C36B6-BFA2-4EC2-B132-75509C43FB24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E68C36B6-BFA2-4EC2-B132-75509C43FB24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C2C08D8-15FE-4AF7-A72B-AE8F33407DC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C2C08D8-15FE-4AF7-A72B-AE8F33407DC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

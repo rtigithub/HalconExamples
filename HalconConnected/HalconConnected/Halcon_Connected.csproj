@@ -113,6 +113,12 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\HalconExtensionLibrary\HalconExtensionLibrary.csproj">
+      <Project>{8e3acf68-a857-4fd6-a19a-32590dd6ee48}</Project>
+      <Name>HalconExtensionLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

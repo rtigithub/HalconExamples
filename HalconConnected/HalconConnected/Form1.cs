@@ -23,7 +23,7 @@ namespace WindowsFormsApplication1
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class Form1 : Form
     {
-      #region Private Fields
+        #region Private Fields
 
         /// <summary>
         /// The halcon window1.
@@ -35,9 +35,9 @@ namespace WindowsFormsApplication1
         /// </summary>
         private HWindow HalconWindow2;
 
-      #endregion Private Fields
+        #endregion Private Fields
 
-      #region Public Constructors
+        #region Public Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Form1"/> class.
@@ -47,9 +47,9 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-      #endregion Public Constructors
+        #endregion Public Constructors
 
-      #region Public Methods
+        #region Public Methods
 
         /// <summary>
         /// Initializes the halcon display.
@@ -61,16 +61,20 @@ namespace WindowsFormsApplication1
             HOperatorSet.SetSystem("height", 512);
 
             if (HalconAPI.isWindows)
-            HOperatorSet.SetSystem("use_window_thread", "true");
+                HOperatorSet.SetSystem("use_window_thread", "true");
             HalconWindow1 = HalconWindowControl1.HalconWindow;
             HalconWindow2 = HalconWindowControl2.HalconWindow;
             HalconWindow1.SetColored(6);
+            HalconWindow1.SetDraw("fill");
+            HalconWindow1.SetLineWidth(3);
             HalconWindow2.SetColored(6);
+            HalconWindow2.SetDraw("fill");
+            HalconWindow2.SetLineWidth(3);
         }
 
-      #endregion Public Methods
+        #endregion Public Methods
 
-      #region Private Methods
+        #region Private Methods
 
         /// <summary>
         /// Actions this instance.
@@ -91,39 +95,42 @@ namespace WindowsFormsApplication1
             HOperatorSet.GenEmptyObj(out ho_ConnectedRegions);
             ho_ImageGrayRamp.Dispose();
             HOperatorSet.GenImageGrayRamp(out ho_ImageGrayRamp, 0, 0, 128, 256, 256, 512, 512);
+            HImage ImageGrayRamp = new HImage(ho_ImageGrayRamp);
 
             // Cast using as operator
-            (ho_ImageGrayRamp as HImage).DispImage(HalconWindow1);
 
             // Traditional cast
-            ((HImage)ho_ImageGrayRamp).DispImage(HalconWindow2);
-
             ho_RegionLines.Dispose();
             HOperatorSet.GenRegionLine(out ho_RegionLines, 100, -1, 150, 512);
-
-            (ho_RegionLines as HRegion).DispRegion(HalconWindow1);
-            ((HRegion)ho_RegionLines).DispRegion(HalconWindow2);
+            HRegion RegionLines = new HRegion(ho_RegionLines);
 
             ho_RegionComplement.Dispose();
             HOperatorSet.Complement(ho_RegionLines, out ho_RegionComplement);
+            HRegion RegionComplement = new HRegion(ho_RegionComplement);
 
             HOperatorSet.SetSystem("neighborhood", 4);
             ho_ConnectedRegions.Dispose();
             HOperatorSet.Connection(ho_RegionComplement, out ho_ConnectedRegions);
-            (ho_ConnectedRegions as HRegion).DispRegion(HalconWindow1);
+            HRegion ConnectedRegions = new HRegion(ho_ConnectedRegions);
+            ImageGrayRamp.DispImage(HalconWindow1);
+            ConnectedRegions.DispRegion(HalconWindow1);
+            RegionLines.DispRegion(HalconWindow1);
 
             // Should be two objects
             HOperatorSet.CountObj(ho_ConnectedRegions, out hv_Number);
             label1.Text = "Number of objects 4-connected:" + hv_Number.ToString();
 
             HOperatorSet.SetSystem("neighborhood", 8);
-            ho_ConnectedRegions.Dispose();
-            HOperatorSet.Connection(ho_RegionComplement, out ho_ConnectedRegions);
-            ((HRegion)ho_ConnectedRegions).DispRegion(HalconWindow2);
+            ConnectedRegions.Dispose();
+            ConnectedRegions = RegionComplement.Connection();
+
+            ImageGrayRamp.DispImage(HalconWindow2);
+            ConnectedRegions.DispRegion(HalconWindow2);
+            RegionLines.DispRegion(HalconWindow2);
 
             // Should be a single object
-            HOperatorSet.CountObj(ho_ConnectedRegions, out hv_Number);
-            label1.Text = "Number of objects 4-connected:" + hv_Number.ToString();
+            hv_Number = ConnectedRegions.CountObj();
+            label2.Text = "Number of objects 8-connected:" + hv_Number.ToString();
 
             ho_ImageGrayRamp.Dispose();
             ho_RegionLines.Dispose();
@@ -139,7 +146,7 @@ namespace WindowsFormsApplication1
         private void Form1_Shown(object sender, EventArgs e)
         {
             InitializeHalconDisplay();
-            NeighborhoodTest();
+            action();
         }
 
         /// <summary>
@@ -202,6 +209,6 @@ namespace WindowsFormsApplication1
             }
         }
 
-      #endregion Private Methods
+        #endregion Private Methods
     }
 }
