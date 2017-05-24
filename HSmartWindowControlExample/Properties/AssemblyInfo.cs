@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("HalconExtensionLibrary")]
+[assembly: AssemblyTitle("HSmartWindowControlExample")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Resolution Technology, Inc.")]
-[assembly: AssemblyProduct("HalconExtensionLibrary")]
-[assembly: AssemblyCopyright("Copyright ©  2016, 2107")]
+[assembly: AssemblyProduct("HSmartWindowControlExample")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("8e3acf68-a857-4fd6-a19a-32590dd6ee48")]
+[assembly: Guid("790cc8f9-3e9b-4b79-9a99-3997efe38edc")]
 
 // Version information for an assembly consists of the following four values:
 //

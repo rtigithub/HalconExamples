@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace DirectShowHObjectToHImage
+namespace HSmartWindowControlExample
 {
     internal static class Program
     {

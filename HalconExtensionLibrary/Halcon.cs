@@ -1,17 +1,16 @@
 ﻿// ***********************************************************************
-// Assembly         : NikeShapeModelCreator
-// Created          : 08-13-2016
-//
-// Last Modified By : Bob Voigt
-// Last Modified On : 09-07-2016
+// Assembly         : Rti.Core.dll
+// Author           : Resolution Technology, Inc.
+// Created          : 03-10-2017
+// Last Modified On : 04-26-2017
 // ***********************************************************************
 // <copyright file="Halcon.cs" company="Resolution Technology, Inc.">
-//     Copyright ©  2016
+//     Copyright (c) 2016, 2017. All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
 
-namespace HalconExtensionLibrary
+namespace Rti.Halcon
 {
     using System;
     using System.Diagnostics.Contracts;
@@ -46,9 +45,7 @@ namespace HalconExtensionLibrary
                     {
                         for (int i = 1; i <= count; i++)
                         {
-                            HTuple rows;
-                            HTuple columns;
-                            @from[i].GetContourXld(out rows, out columns);
+                            @from[i].GetContourXld(out HTuple rows, out HTuple columns);
                             cumulativeRows = cumulativeRows.TupleConcat(rows);
                             cumulativeColumns = cumulativeColumns.TupleConcat(columns);
                         }
@@ -64,7 +61,14 @@ namespace HalconExtensionLibrary
                     }
                 }
 
-                return convexHull.CopyObj(1, -1);
+                if (convexHull.IsInitialized())
+                {
+                    return convexHull.CopyObj(1, -1);
+                }
+                else
+                {
+                    return new HXLDCont();
+                }
             }
             finally
             {
@@ -78,8 +82,8 @@ namespace HalconExtensionLibrary
         /// </summary>
         /// <param name="from">The source HImage.</param>
         /// <param name="to">The destination HImage.</param>
-        /// <exception cref="System.ArgumentNullException"></exception>
         /// <exception cref="ArgumentNullException">from must not be null.</exception>
+        /// <exception cref="System.ArgumentNullException"></exception>
         public static void HCopy(this HImage from, ref HImage to)
         {
             try
@@ -112,8 +116,8 @@ namespace HalconExtensionLibrary
         /// </summary>
         /// <param name="from">The source HRegion.</param>
         /// <param name="to">The destination HRegion.</param>
-        /// <exception cref="System.ArgumentNullException"></exception>
         /// <exception cref="ArgumentNullException">from must not be null.</exception>
+        /// <exception cref="System.ArgumentNullException"></exception>
         public static void HCopy(this HRegion from, ref HRegion to)
         {
             try
@@ -145,8 +149,8 @@ namespace HalconExtensionLibrary
         /// </summary>
         /// <param name="from">The source HXLD.</param>
         /// <param name="to">The destination HXLD.</param>
-        /// <exception cref="System.ArgumentNullException"></exception>
         /// <exception cref="ArgumentNullException">from must not be null.</exception>
+        /// <exception cref="System.ArgumentNullException"></exception>
         public static void HCopy(this HXLD from, ref HXLD to)
         {
             try
@@ -179,8 +183,8 @@ namespace HalconExtensionLibrary
         /// </summary>
         /// <param name="from">The source HXLDCont.</param>
         /// <param name="to">The destination HXLDCont.</param>
-        /// <exception cref="System.ArgumentNullException"></exception>
         /// <exception cref="ArgumentNullException">from must not be null.</exception>
+        /// <exception cref="System.ArgumentNullException"></exception>
         public static void HCopy(this HXLDCont from, ref HXLDCont to)
         {
             try
@@ -230,7 +234,7 @@ namespace HalconExtensionLibrary
         /// <summary>
         /// Converts a bitmap to a Halcon image.
         /// </summary>
-        /// <param name="from">From.</param>
+        /// <param name="from">A bitmap to be converted to an HImage.</param>
         /// <returns>An HImage converted from a Windows Bitmap.</returns>
         /// <example> HImage imageFromBitmap = myBitmap.ToHImage(); .</example>
         public static HImage ToHimage(this Bitmap from)
@@ -287,32 +291,6 @@ namespace HalconExtensionLibrary
                 {
                     newImage.Dispose();
                     newImage = new HImage(from);
-
-                    //HTuple type, width, height, channelCount;
-                    //HOperatorSet.CountChannels(from, out channelCount);
-
-                    //for (int channel = 1; channel <= channelCount; channel++)
-                    //{
-                    //   HTuple pointer;
-                    //   HObject tempImage;
-                    //   HOperatorSet.AccessChannel(from, out tempImage, channel);
-                    //   try
-                    //   {
-                    //      HOperatorSet.GetImagePointer1(tempImage, out pointer, out type, out width, out height);
-                    //      if (newImage.IsValid())
-                    //      {
-                    //         newImage.AppendChannel(new HImage(type, width, height, pointer)).HCopy(ref newImage);
-                    //      }
-                    //      else
-                    //      {
-                    //         newImage = new HImage(type, width, height, pointer);
-                    //      }
-                    //   }
-                    //   finally
-                    //   {
-                    //      tempImage.Dispose();
-                    //   }
-                    //}
                 }
             }
 
@@ -322,7 +300,7 @@ namespace HalconExtensionLibrary
         /// <summary>
         /// A helper method to convert an HObject containing a region to an HRegion.
         /// </summary>
-        /// <param name="from">From.</param>
+        /// <param name="from">A Halcon HObject to convert to an HRegion.</param>
         /// <returns>HRegion.</returns>
         /// <example> HRegion regionFromHalconObject = myHObject.ToHRegion(); .</example>
         public static HRegion ToHRegion(this HObject from)
@@ -334,12 +312,6 @@ namespace HalconExtensionLibrary
                 {
                     newRegion.Dispose();
                     newRegion = new HRegion(from);
-
-                    //HTuple row;
-                    //HTuple columnBegin;
-                    //HTuple columnEnd;
-                    //HOperatorSet.GetRegionRuns(from, out row, out columnBegin, out columnEnd);
-                    //newRegion.GenRegionRuns(row, columnBegin, columnEnd);
                 }
             }
 
@@ -351,7 +323,6 @@ namespace HalconExtensionLibrary
         /// </summary>
         /// <param name="from">From.</param>
         /// <returns>HXLDCont.</returns>
-        /// <exception cref="System.NotImplementedException"></exception>
         /// <exception cref="NotImplementedException"></exception>
         public static HXLDCont ToHXLDCont(this HObject from)
         {
@@ -373,7 +344,6 @@ namespace HalconExtensionLibrary
         /// </summary>
         /// <param name="from">From.</param>
         /// <returns>HXLDPara.</returns>
-        /// <exception cref="System.NotImplementedException"></exception>
         /// <exception cref="NotImplementedException"></exception>
         public static HXLDPara ToHXLDPara(this HObject from)
         {
@@ -395,7 +365,6 @@ namespace HalconExtensionLibrary
         /// </summary>
         /// <param name="from">From.</param>
         /// <returns>HXLDPoly.</returns>
-        /// <exception cref="System.NotImplementedException"></exception>
         /// <exception cref="NotImplementedException"></exception>
         public static HXLDPoly ToHXLDPoly(this HObject from)
         {
@@ -413,7 +382,7 @@ namespace HalconExtensionLibrary
         }
 
         /// <summary>
-        /// A helper method to convert an Htuple to an appropriate string format.
+        /// A helper method to convert an HTuple to an appropriate string format.
         /// </summary>
         /// <param name="from">From.</param>
         /// <returns>System.String.</returns>

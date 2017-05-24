@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace HalconConnected
 {
    partial class Form1
    {

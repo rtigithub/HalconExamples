@@ -1,17 +1,16 @@
 ﻿// ***********************************************************************
 // Assembly         : WindowsFormsApplication1
+// Author           : Resolution Technology, Inc.
 // Created          : 09-07-2016
-//
-// Last Modified By : Bob Voigt
-// Last Modified On : 09-07-2016
+// Last Modified On : 05-24-2017
 // ***********************************************************************
 // <copyright file="Form1.cs" company="Resolution Technology, Inc.">
-//     Copyright ©  2016
+//     Copyright ©  2016, 2017
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
 
-namespace WindowsFormsApplication1
+namespace HalconConnected
 {
     using System;
     using System.Windows.Forms;
@@ -26,12 +25,12 @@ namespace WindowsFormsApplication1
         #region Private Fields
 
         /// <summary>
-        /// The halcon window1.
+        /// The first halcon window.
         /// </summary>
         private HWindow HalconWindow1;
 
         /// <summary>
-        /// The halcon window2.
+        /// The second halcon window.
         /// </summary>
         private HWindow HalconWindow2;
 
@@ -77,9 +76,9 @@ namespace WindowsFormsApplication1
         #region Private Methods
 
         /// <summary>
-        /// Actions this instance.
+        /// Action for this instance.
         /// </summary>
-        private void action()
+        private void Action()
         {
             // Local iconic variables
             HObject ho_ImageGrayRamp, ho_RegionLines, ho_RegionComplement;
@@ -146,11 +145,11 @@ namespace WindowsFormsApplication1
         private void Form1_Shown(object sender, EventArgs e)
         {
             InitializeHalconDisplay();
-            action();
+            Action();
         }
 
         /// <summary>
-        /// Neighborhoods the test.
+        /// Test the neighborhood.
         /// </summary>
         private void NeighborhoodTest()
         {
