@@ -1,0 +1,32 @@
+﻿Imports HalconDotNet
+Module Module1
+    Sub Main()
+
+        ' Local iconic variables 
+        Dim ho_Regions As HObject = Nothing, ho_EmptyRegion As HObject = Nothing
+        Dim result As HTuple
+        ' Initialize local and output iconic variables 
+        HOperatorSet.GenEmptyObj(ho_Regions)
+        HOperatorSet.GenEmptyObj(ho_EmptyRegion)
+
+        ' Initialize local and output control variables 
+        ho_Regions.Dispose()
+        HOperatorSet.GenRandomRegions(ho_Regions, New HTuple("circle"), New HTuple(10),
+      New HTuple(20), New HTuple(10), New HTuple(30), New HTuple(-0.7854), New HTuple(0.7854),
+      New HTuple(100), New HTuple(512), New HTuple(512))
+        ho_EmptyRegion.Dispose()
+        HOperatorSet.GenEmptyRegion(ho_EmptyRegion)
+        result = New HTuple(ho_Regions.TestEqualObj(ho_EmptyRegion)).I()
+        If result Then
+            ' Following three lines added to show results
+            Console.WriteLine("true {0}", result)
+        Else
+            Console.WriteLine("false {0}", result)
+        End If
+
+        ho_Regions.Dispose()
+        ho_EmptyRegion.Dispose()
+        Console.ReadKey()
+    End Sub
+
+End Module

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="20.05.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<l>gen_random_regions (Regions, 'circle', 10, 20, 10, 30, -0.7854, 0.7854, 100, 512, 512)</l>
+<l>gen_empty_region (EmptyRegion)</l>
+<l>if (Regions != EmptyRegion)</l>
+<l>    stop()</l>
+<l>endif</l>
+<c></c>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>

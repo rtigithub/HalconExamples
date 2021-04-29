@@ -1,0 +1,118 @@
+﻿<Window x:Class="HalconTemplateDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="890.0" Width="1590.0"         
+        xmlns:local="clr-namespace:RibbonTest"
+        xmlns:my="clr-namespace:HalconDotNet;assembly=halcondotnet"            
+        x:Name="myWindow" Loaded="WindowLoaded" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid Name="MainGrid" 
+          ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="28" />
+            <RowDefinition Height="32" />
+            <RowDefinition/>
+            <RowDefinition Height="18" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="376" />
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Ribbon Name="RibbonControl1" Margin="0,-20,0,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu Name="RibbonAppMenu">
+                    <RibbonApplicationMenu.Resources>
+                        <local:NegativeIntegerConverter x:Key="NegativeIntegerConverter" />
+
+                        <Style TargetType="Popup">
+                            <Setter Property="Placement" Value="Left"/>
+                            <Setter Property="HorizontalOffset"
+                             Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RibbonApplicationMenu},
+                                             Path=Width,
+                                             Converter={StaticResource ResourceKey=NegativeIntegerConverter}}" />
+                        </Style>
+                    </RibbonApplicationMenu.Resources>
+                    <RibbonApplicationMenuItem x:Name="OptionsItem" Header="Options"/>
+                    <RibbonApplicationMenuItem x:Name="ExitItem" Header="Exit" Click="ExitItem_Click"/>
+                </RibbonApplicationMenu>
+            </Ribbon.ApplicationMenu>
+            <RibbonButton x:Name="MainItem" Label="Main" Click="MainItem_Click"/>
+            <RibbonTab Header ="Utilities">
+                <RibbonGroup Name="UtilitiesTab">
+                    <!--<RibbonMenuItem x:Name="Page1Button" Header="Page 1" Click="Page1MenuItem_Click"/>
+                    <RibbonMenuItem x:Name="Page2Button" Header="Page 2" Click="Page2MenuItem_Click"/>-->
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+
+        <Grid  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Name="ControlGrid"  
+                    Background ="CadetBlue" Grid.Row="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="58"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="118"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="253*"/>
+                <RowDefinition Height="279*"/>
+            </Grid.RowDefinitions>
+            <Button Content="Load Image" Name="buttonLoadImage" Grid.Row="0" VerticalAlignment="Top" Height="36"                    
+                    Margin="86,10,86,0" HorizontalContentAlignment="Center"/>
+            <Button Name="ProcessButton" Content="Process" DockPanel.Dock="Top" Margin="86,10,86,0" VerticalAlignment="Top"
+                    HorizontalContentAlignment="Center" Grid.Row="1" Height="36"/>
+            
+            <DataGrid AutoGenerateColumns="True" Name="dataGrid1" Grid.Row="6" Margin="3,0"
+                      CanUserAddRows="False" ColumnWidth="*"/>
+        </Grid>
+        
+        <Grid Name="ImageGrid" Grid.Column="1" Grid.Row="2">
+            <Grid.RowDefinitions>
+                
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Grid.Row="0"  Name="ImageBorder" >
+                <my:HSmartWindowControlWPF Name="hWindowControlWPF1"/>
+            </Border>
+        </Grid>
+        
+        <DockPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Name="toolBarPanel1" VerticalAlignment="Stretch" 
+                   Background ="White" Width="Auto">
+            <ComboBox Name="comboboxZoom" SelectedIndex="10" Width="70" HorizontalAlignment="Left" Margin="0,0,0,0">
+                <ComboBoxItem Content="6400%"></ComboBoxItem>
+                <ComboBoxItem Content="3200%"></ComboBoxItem>
+                <ComboBoxItem Content="1600%"></ComboBoxItem>
+                <ComboBoxItem Content="800%"></ComboBoxItem>
+                <ComboBoxItem Content="400%"></ComboBoxItem>
+                <ComboBoxItem Content="200%"></ComboBoxItem>
+                <ComboBoxItem Content="100%"></ComboBoxItem>
+                <ComboBoxItem Content="75%"></ComboBoxItem>
+                <ComboBoxItem Content="50%"></ComboBoxItem>
+                <ComboBoxItem Content="33%"></ComboBoxItem>
+                <ComboBoxItem Content="Fit"></ComboBoxItem>
+            </ComboBox>
+            <TextBlock 
+                Text="{Binding Path=LoadImageVM.FileName, UpdateSourceTrigger=PropertyChanged}"                
+                Background="White" Name="TextBlockFileName" HorizontalAlignment="Stretch" 
+                Width="Auto" Margin="0,6,0,0" />
+        </DockPanel>
+        <Label Content="{Binding Path=StatusText, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.ColumnSpan="2" 
+               Height="24" HorizontalAlignment="Stretch" Margin="0,0,0,-2" Name="label1" VerticalAlignment="Top" 
+               Background="LightGreen" FontSize="12" Padding="5,2,5,5" />
+
+        <!-- Set the Grid.ZIndex to -1 to edit Main controls in the designer. -->
+        <Frame x:Name="Frame1"               
+               Grid.ZIndex="1"
+               Content= "Frame"
+               HorizontalAlignment="Stretch" 
+               Height="1000" 
+               VerticalAlignment="Top"                
+               BorderThickness="1" 
+               BorderBrush="Black"
+               NavigationUIVisibility="Hidden" 
+               Margin="0,0,0,0" 
+               Grid.Row="1"
+               Grid.RowSpan="2"/>
+    </Grid>
+</Window>

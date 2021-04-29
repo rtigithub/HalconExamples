@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectShowHObjectToHImage", "DirectShowHObjectToHImage\DirectShowHObjectToHImage.csproj", "{C0D87982-70AC-4021-8ADB-4BDAB0F634EC}"
 EndProject
@@ -9,42 +9,75 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HalconExtensionLibrary", "H
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Halcon_Connected", "HalconConnected\HalconConnected\Halcon_Connected.csproj", "{E68C36B6-BFA2-4EC2-B132-75509C43FB24}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "H12Python", "H12Python\H12Python\H12Python.pyproj", "{4C2C08D8-15FE-4AF7-A72B-AE8F33407DC2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSmartWindowControlExample", "HSmartWindowControlExample\HSmartWindowControlExample.csproj", "{790CC8F9-3E9B-4B79-9A99-3997EFE38EDC}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "HalconScaledImage", "HalconScaledImage\HalconScaledImage\HalconScaledImage.vbproj", "{BB30BCAA-A840-4BDE-8B1A-BFAB82117CAE}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "HalconIronPythonWinForms", "HalconIronPythonWinForms\HalconIronPythonWinForms.pyproj", "{7DDEF0A1-354B-43EB-A98C-DFB003181CFE}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "HalconIronPythonWpf", "HalconIronPythonWpf\HalconIronPythonWpf.pyproj", "{F86A39B7-A113-4B9A-AA9B-F79754FF71B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C0D87982-70AC-4021-8ADB-4BDAB0F634EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C0D87982-70AC-4021-8ADB-4BDAB0F634EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0D87982-70AC-4021-8ADB-4BDAB0F634EC}.Debug|x64.ActiveCfg = Debug|x64
+		{C0D87982-70AC-4021-8ADB-4BDAB0F634EC}.Debug|x64.Build.0 = Debug|x64
 		{C0D87982-70AC-4021-8ADB-4BDAB0F634EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0D87982-70AC-4021-8ADB-4BDAB0F634EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0D87982-70AC-4021-8ADB-4BDAB0F634EC}.Release|x64.ActiveCfg = Release|x64
+		{C0D87982-70AC-4021-8ADB-4BDAB0F634EC}.Release|x64.Build.0 = Release|x64
 		{8E3ACF68-A857-4FD6-A19A-32590DD6EE48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8E3ACF68-A857-4FD6-A19A-32590DD6EE48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E3ACF68-A857-4FD6-A19A-32590DD6EE48}.Debug|x64.ActiveCfg = Debug|x64
+		{8E3ACF68-A857-4FD6-A19A-32590DD6EE48}.Debug|x64.Build.0 = Debug|x64
 		{8E3ACF68-A857-4FD6-A19A-32590DD6EE48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E3ACF68-A857-4FD6-A19A-32590DD6EE48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E3ACF68-A857-4FD6-A19A-32590DD6EE48}.Release|x64.ActiveCfg = Release|x64
+		{8E3ACF68-A857-4FD6-A19A-32590DD6EE48}.Release|x64.Build.0 = Release|x64
 		{E68C36B6-BFA2-4EC2-B132-75509C43FB24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E68C36B6-BFA2-4EC2-B132-75509C43FB24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E68C36B6-BFA2-4EC2-B132-75509C43FB24}.Debug|x64.ActiveCfg = Debug|x64
+		{E68C36B6-BFA2-4EC2-B132-75509C43FB24}.Debug|x64.Build.0 = Debug|x64
 		{E68C36B6-BFA2-4EC2-B132-75509C43FB24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E68C36B6-BFA2-4EC2-B132-75509C43FB24}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4C2C08D8-15FE-4AF7-A72B-AE8F33407DC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C2C08D8-15FE-4AF7-A72B-AE8F33407DC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E68C36B6-BFA2-4EC2-B132-75509C43FB24}.Release|x64.ActiveCfg = Release|x64
+		{E68C36B6-BFA2-4EC2-B132-75509C43FB24}.Release|x64.Build.0 = Release|x64
 		{790CC8F9-3E9B-4B79-9A99-3997EFE38EDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{790CC8F9-3E9B-4B79-9A99-3997EFE38EDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{790CC8F9-3E9B-4B79-9A99-3997EFE38EDC}.Debug|x64.ActiveCfg = Debug|x64
+		{790CC8F9-3E9B-4B79-9A99-3997EFE38EDC}.Debug|x64.Build.0 = Debug|x64
 		{790CC8F9-3E9B-4B79-9A99-3997EFE38EDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{790CC8F9-3E9B-4B79-9A99-3997EFE38EDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{790CC8F9-3E9B-4B79-9A99-3997EFE38EDC}.Release|x64.ActiveCfg = Release|x64
+		{790CC8F9-3E9B-4B79-9A99-3997EFE38EDC}.Release|x64.Build.0 = Release|x64
 		{BB30BCAA-A840-4BDE-8B1A-BFAB82117CAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BB30BCAA-A840-4BDE-8B1A-BFAB82117CAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB30BCAA-A840-4BDE-8B1A-BFAB82117CAE}.Debug|x64.ActiveCfg = Debug|x64
+		{BB30BCAA-A840-4BDE-8B1A-BFAB82117CAE}.Debug|x64.Build.0 = Debug|x64
 		{BB30BCAA-A840-4BDE-8B1A-BFAB82117CAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB30BCAA-A840-4BDE-8B1A-BFAB82117CAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB30BCAA-A840-4BDE-8B1A-BFAB82117CAE}.Release|x64.ActiveCfg = Release|x64
+		{BB30BCAA-A840-4BDE-8B1A-BFAB82117CAE}.Release|x64.Build.0 = Release|x64
+		{7DDEF0A1-354B-43EB-A98C-DFB003181CFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DDEF0A1-354B-43EB-A98C-DFB003181CFE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7DDEF0A1-354B-43EB-A98C-DFB003181CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DDEF0A1-354B-43EB-A98C-DFB003181CFE}.Release|x64.ActiveCfg = Release|Any CPU
+		{F86A39B7-A113-4B9A-AA9B-F79754FF71B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F86A39B7-A113-4B9A-AA9B-F79754FF71B8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F86A39B7-A113-4B9A-AA9B-F79754FF71B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F86A39B7-A113-4B9A-AA9B-F79754FF71B8}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D5159450-E055-40B2-B341-78F52BBAB505}
 	EndGlobalSection
 EndGlobal
